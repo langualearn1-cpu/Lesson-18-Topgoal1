@@ -1,0 +1,1655 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Do you remember? - Page 9 | الاستوديو التعليمي التفاعلي</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts: Cairo & Nunito / Fredoka -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@500;600;700;800;900&family=Fredoka:wght@500;600;700&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Canvas Confetti -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <style>
+    :root {
+      --bg-base: #f3e8ff;
+      --blob-1: rgba(139, 92, 246, 0.38);
+      --blob-2: rgba(244, 114, 182, 0.35);
+      --blob-3: rgba(99, 102, 241, 0.32);
+    }
+
+    body.theme-lavender { --bg-base: #f3e8ff; --blob-1: rgba(139, 92, 246, 0.38); --blob-2: rgba(244, 114, 182, 0.35); --blob-3: rgba(99, 102, 241, 0.32); }
+    body.theme-emerald { --bg-base: #d1fae5; --blob-1: rgba(16, 185, 129, 0.35); --blob-2: rgba(20, 184, 166, 0.32); --blob-3: rgba(132, 204, 22, 0.32); }
+    body.theme-ocean { --bg-base: #e0f2fe; --blob-1: rgba(14, 165, 233, 0.38); --blob-2: rgba(45, 212, 191, 0.35); --blob-3: rgba(59, 130, 246, 0.32); }
+    body.theme-sunset { --bg-base: #ffedd5; --blob-1: rgba(249, 115, 22, 0.35); --blob-2: rgba(244, 63, 94, 0.32); --blob-3: rgba(234, 179, 8, 0.35); }
+
+    body {
+      font-family: 'Cairo', sans-serif;
+      background-color: var(--bg-base);
+      color: #0f172a;
+      transition: background-color 0.7s ease;
+      position: relative;
+    }
+
+    .en-font { font-family: 'Nunito', sans-serif; }
+    .en-display { font-family: 'Fredoka', sans-serif; }
+
+    .ambient-canvas { position: fixed; inset: 0; z-index: -2; overflow: hidden; pointer-events: none; }
+    .dot-grid { position: fixed; inset: 0; z-index: -1; background-image: radial-gradient(rgba(79, 70, 229, 0.14) 1.5px, transparent 1.5px); background-size: 28px 28px; pointer-events: none; }
+    .aurora-blob { position: absolute; border-radius: 9999px; filter: blur(75px); animation: floatAurora 16s infinite alternate ease-in-out; }
+    .blob-1 { width: 520px; height: 520px; top: -120px; right: -100px; background: var(--blob-1); }
+    .blob-2 { width: 480px; height: 480px; bottom: -120px; left: -100px; background: var(--blob-2); animation-delay: -5s; }
+    .blob-3 { width: 420px; height: 420px; top: 38%; left: 32%; background: var(--blob-3); animation-delay: -10s; }
+
+    @keyframes floatAurora {
+      0% { transform: translate(0, 0) scale(1) rotate(0deg); }
+      50% { transform: translate(45px, -35px) scale(1.1) rotate(8deg); }
+      100% { transform: translate(-35px, 40px) scale(0.94) rotate(-8deg); }
+    }
+
+    .floating-icon { position: fixed; z-index: -1; opacity: 0.18; pointer-events: none; animation: floatIcon 8s infinite ease-in-out alternate; }
+    @keyframes floatIcon { 0% { transform: translateY(0px) rotate(-6deg); } 100% { transform: translateY(-22px) rotate(8deg); } }
+
+    .glass-studio-card {
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 2px solid rgba(255, 255, 255, 0.95);
+      box-shadow: 0 20px 50px -12px rgba(30, 41, 59, 0.12), 0 4px 16px rgba(99, 102, 241, 0.06);
+      border-radius: 2.25rem;
+    }
+
+    .btn-3d { transition: all 0.14s cubic-bezier(0.34, 1.56, 0.64, 1); position: relative; transform: translateY(0); }
+    .btn-3d:hover { transform: translateY(-2px); }
+    .btn-3d:active { transform: translateY(4px) !important; box-shadow: 0 0px 0 0 transparent !important; }
+
+    .btn-3d-indigo { background: linear-gradient(135deg, #6366f1, #4f46e5); color: #fff; box-shadow: 0 5px 0 0 #3730a3, 0 10px 20px rgba(79, 70, 229, 0.3); }
+    .btn-3d-emerald { background: linear-gradient(135deg, #10b981, #059669); color: #fff; box-shadow: 0 5px 0 0 #065f46, 0 10px 20px rgba(16, 185, 129, 0.3); }
+    .btn-3d-amber { background: linear-gradient(135deg, #f59e0b, #d97706); color: #fff; box-shadow: 0 5px 0 0 #92400e, 0 10px 20px rgba(245, 158, 11, 0.3); }
+    .btn-3d-pink { background: linear-gradient(135deg, #ec4899, #db2777); color: #fff; box-shadow: 0 5px 0 0 #9d174d, 0 10px 20px rgba(236, 72, 153, 0.3); }
+    .btn-3d-white { background: #ffffff; color: #334155; border: 2px solid #e2e8f0; box-shadow: 0 5px 0 0 #cbd5e1; }
+
+    .nav-pill { transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); border: 2px solid transparent; }
+    .nav-pill.active {
+      background: linear-gradient(135deg, #4f46e5, #7c3aed);
+      color: #ffffff;
+      box-shadow: 0 5px 0 0 #312e81, 0 12px 24px -4px rgba(79, 70, 229, 0.45);
+      transform: translateY(-2px);
+    }
+
+    .word-token {
+      display: inline-block;
+      padding: 2px 6px;
+      margin: 2px 1px;
+      border-radius: 10px;
+      transition: transform 0.05s ease-out, background-color 0.04s ease-out, color 0.04s ease-out, opacity 0.2s ease;
+      cursor: pointer;
+      border: 2px solid transparent;
+      position: relative;
+      vertical-align: baseline;
+    }
+    .word-token:hover { background-color: #e0e7ff; border-color: #a5b4fc; color: #312e81; }
+    .word-passed { opacity: 0.45; }
+    .word-active {
+      background: linear-gradient(90deg, #facc15 0%, #fde047 100%) !important;
+      color: #713f12 !important;
+      font-weight: 900 !important;
+      border-color: #eab308 !important;
+      border-radius: 12px !important;
+      box-shadow: 0 4px 0 0 #ca8a04, 0 8px 18px rgba(250, 204, 21, 0.55);
+      transform: scale(1.07) translateY(-2px) !important;
+      z-index: 20;
+    }
+
+    .sentence-play-chip {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 26px; height: 26px; border-radius: 999px;
+      background: #eef2ff; color: #4f46e5; border: 1.5px solid #c7d2fe;
+      font-size: 10px; margin: 0 6px 0 4px; vertical-align: middle;
+      cursor: pointer; transition: all 0.15s ease;
+    }
+    .sentence-play-chip:hover { background: #4f46e5; color: #ffffff; transform: scale(1.12); }
+
+    .draggable-word {
+      user-select: none; touch-action: none; cursor: grab;
+      transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+      background: #ffffff; border: 2px solid #c7d2fe;
+      box-shadow: 0 5px 0 0 #a5b4fc, 0 6px 12px rgba(99, 102, 241, 0.12);
+    }
+    .draggable-word:hover { transform: translateY(-3px); border-color: #6366f1; }
+    .draggable-word.selected-for-drop {
+      background: linear-gradient(135deg, #eef2ff, #e0e7ff);
+      border-color: #4f46e5; color: #312e81;
+      box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.35), 0 4px 0 0 #4f46e5;
+      transform: scale(1.08) translateY(-3px);
+    }
+
+    .drop-slot {
+      min-width: 115px; height: 44px; padding: 0 12px;
+      display: inline-flex; align-items: center; justify-content: center;
+      background-color: #f8fafc; border: 3px dashed #94a3b8;
+      border-radius: 14px; margin: 4px 5px; vertical-align: middle;
+      transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+      font-family: 'Fredoka', sans-serif; font-weight: 700; position: relative; cursor: pointer;
+    }
+    .drop-slot:hover { border-color: #6366f1; background-color: #eef2ff; }
+    .drop-slot.drag-over { background-color: #e0e7ff; border-color: #4f46e5; border-style: solid; transform: scale(1.12); }
+    .drop-slot.filled { border-style: solid; border-color: #4f46e5; background: linear-gradient(135deg, #eef2ff, #e0e7ff); color: #312e81; box-shadow: 0 4px 0 0 #818cf8; transform: translateY(-2px); }
+    .drop-slot.correct { border-style: solid; border-color: #10b981; background: linear-gradient(135deg, #d1fae5, #a7f3d0); color: #065f46; box-shadow: 0 4px 0 0 #059669; animation: popSuccess 0.45s cubic-bezier(0.34, 1.56, 0.64, 1); }
+    .drop-slot.incorrect { border-style: solid; border-color: #ef4444; background: linear-gradient(135deg, #fee2e2, #fecaca); color: #991b1b; box-shadow: 0 4px 0 0 #dc2626; animation: shakeError 0.45s ease-in-out; }
+
+    .wave-bar { width: 4px; height: 8px; background: #a5b4fc; border-radius: 99px; transition: height 0.15s ease; }
+    .playing-waves .wave-bar { background: #34d399; animation: soundBounce 0.6s infinite ease-in-out alternate; }
+    .playing-waves .wave-bar:nth-child(2) { animation-delay: 0.15s; }
+    .playing-waves .wave-bar:nth-child(3) { animation-delay: 0.3s; }
+    .playing-waves .wave-bar:nth-child(4) { animation-delay: 0.1s; }
+    .playing-waves .wave-bar:nth-child(5) { animation-delay: 0.25s; }
+
+    @keyframes soundBounce { 0% { height: 6px; } 100% { height: 24px; } }
+    @keyframes popSuccess { 0% { transform: scale(0.8); } 50% { transform: scale(1.14); } 100% { transform: scale(1); } }
+    @keyframes shakeError { 0%, 100% { transform: translateX(0); } 25%, 75% { transform: translateX(-7px); } 50% { transform: translateX(7px); } }
+    @keyframes fadeSlideUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+    .animate-section { animation: fadeSlideUp 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+  </style>
+</head>
+
+<body class="theme-emerald min-h-screen pb-24 overflow-x-hidden selection:bg-indigo-600 selection:text-white" id="mainBody">
+
+  <!-- Ambient Canvas Background -->
+  <div class="ambient-canvas">
+    <div class="aurora-blob blob-1"></div>
+    <div class="aurora-blob blob-2"></div>
+    <div class="aurora-blob blob-3"></div>
+  </div>
+  <div class="dot-grid"></div>
+
+  <!-- Floating Micro-Icons -->
+  <div class="floating-icon text-5xl top-28 left-8">🎂</div>
+  <div class="floating-icon text-5xl top-44 right-10" style="animation-delay: -2s;">🎸</div>
+  <div class="floating-icon text-5xl bottom-24 left-12" style="animation-delay: -4s;">🥪</div>
+  <div class="floating-icon text-5xl bottom-32 right-12" style="animation-delay: -6s;">⭐</div>
+
+  <!-- Header -->
+  <header class="sticky top-0 z-50 bg-white/85 backdrop-blur-xl border-b-2 border-white/80 shadow-md">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-4">
+      <div class="flex items-center gap-3.5">
+        <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-pink-600 via-purple-600 to-indigo-600 flex items-center justify-center text-white shadow-lg shadow-indigo-500/30 border-2 border-white transform -rotate-3 hover:rotate-0 transition">
+          <i class="fa-solid fa-cake-candles text-2xl"></i>
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="en-display text-xs font-bold uppercase tracking-wider px-3 py-0.5 rounded-full bg-pink-600 text-white shadow-sm">
+              Do you remember?
+            </span>
+            <span class="text-xs font-extrabold text-emerald-800 bg-emerald-100 border border-emerald-300 px-2.5 py-0.5 rounded-full">صفحة 9 • Page 9</span>
+          </div>
+          <h1 class="text-lg md:text-2xl font-black text-slate-900 mt-0.5">الاستوديو التفاعلي: ظروف التكرار ويوم الاحتفال</h1>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-2.5 sm:gap-3 flex-wrap">
+        <div class="flex items-center gap-1.5 bg-slate-100/90 border-2 border-slate-200 px-3 py-1.5 rounded-2xl shadow-inner">
+          <i class="fa-solid fa-palette text-indigo-500 text-sm"></i>
+          <select id="themeSelect" onchange="changeBackgroundTheme(this.value)" class="bg-transparent text-xs md:text-sm font-extrabold text-slate-700 outline-none cursor-pointer">
+            <option value="theme-emerald" selected>🌿 حديقة زمردية</option>
+            <option value="theme-lavender">🌸 شفق لافندر</option>
+            <option value="theme-ocean">🌊 محيط سماوي</option>
+            <option value="theme-sunset">🌅 غروب ذهبي</option>
+          </select>
+        </div>
+
+        <div id="starBadge" class="flex items-center gap-2 bg-gradient-to-r from-amber-100 to-yellow-100 border-2 border-amber-300 text-amber-900 px-4 py-1.5 rounded-2xl font-black shadow-sm transition-transform">
+          <i class="fa-solid fa-star text-amber-500 text-lg animate-spin" style="animation-duration: 9s;"></i>
+          <span class="text-xs md:text-sm">نجومي:</span>
+          <span id="starScore" class="en-display text-xl text-amber-600">0</span>
+        </div>
+
+        <button onclick="playEncouragement()" class="btn-3d btn-3d-indigo px-4 py-2 rounded-2xl text-xs md:text-sm font-black flex items-center gap-2">
+          <i class="fa-solid fa-wand-magic-sparkles text-yellow-300"></i>
+          <span>تشجيع ذكي</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Navigation Tabs -->
+    <div class="max-w-7xl mx-auto px-4 pb-3 pt-1">
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3 bg-slate-100/90 p-2 rounded-3xl border-2 border-white shadow-inner">
+        <button onclick="switchTab('listen')" id="tab-listen" class="nav-pill active py-3 px-3 sm:px-4 rounded-2xl font-black text-xs sm:text-sm md:text-base flex items-center justify-center gap-2 text-slate-700 bg-white/80">
+          <i class="fa-solid fa-headphones-simple text-base sm:text-lg"></i>
+          <span>1. القراءة المتزامنة (5)</span>
+        </button>
+        <button onclick="switchTab('adverbs')" id="tab-adverbs" class="nav-pill py-3 px-3 sm:px-4 rounded-2xl font-black text-xs sm:text-sm md:text-base flex items-center justify-center gap-2 text-slate-700 bg-white/80">
+          <i class="fa-solid fa-check-double text-base sm:text-lg"></i>
+          <span>2. ترتيب الجمل (3 & 4)</span>
+        </button>
+        <button onclick="switchTab('dragdrop')" id="tab-dragdrop" class="nav-pill py-3 px-3 sm:px-4 rounded-2xl font-black text-xs sm:text-sm md:text-base flex items-center justify-center gap-2 text-slate-700 bg-white/80">
+          <i class="fa-solid fa-puzzle-piece text-base sm:text-lg"></i>
+          <span>3. أكمل الفراغات (5)</span>
+        </button>
+        <button onclick="switchTab('roleplay')" id="tab-roleplay" class="nav-pill py-3 px-3 sm:px-4 rounded-2xl font-black text-xs sm:text-sm md:text-base flex items-center justify-center gap-2 text-slate-700 bg-white/80">
+          <i class="fa-solid fa-comments text-base sm:text-lg"></i>
+          <span>4. الأسئلة والأدوار (6)</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Container -->
+  <main class="max-w-7xl mx-auto px-4 mt-8">
+
+    <!-- ================= SECTION 1: KARAOKE READ-ALONG (EX 5) ================= -->
+    <section id="section-listen" class="tab-content block animate-section">
+      <div class="glass-studio-card p-5 md:p-6 mb-8 border-2 border-indigo-100">
+        <div class="flex flex-col lg:flex-row items-center justify-between gap-5">
+          <div class="flex items-center gap-4 w-full lg:w-auto justify-between lg:justify-start bg-slate-900 text-white p-3.5 pr-5 rounded-3xl shadow-xl border border-slate-700">
+            <div class="flex items-center gap-3">
+              <button id="playAudioBtn" onclick="toggleSpeech()" class="btn-3d w-14 h-14 rounded-2xl bg-gradient-to-tr from-indigo-500 to-purple-500 hover:from-indigo-400 hover:to-purple-400 text-white flex items-center justify-center text-2xl shadow-lg">
+                <i id="playIcon" class="fa-solid fa-play"></i>
+              </button>
+              <button onclick="stopSpeech()" class="btn-3d w-12 h-12 rounded-2xl bg-slate-800 hover:bg-rose-600 text-slate-300 hover:text-white flex items-center justify-center text-lg border border-slate-700" title="إيقاف وإعادة">
+                <i class="fa-solid fa-stop"></i>
+              </button>
+            </div>
+            <div class="px-2">
+              <div class="text-xs text-slate-400 font-bold">تزامن القراءة الذكي</div>
+              <div id="playText" class="text-sm font-black text-indigo-300">جاهز للقراءة 🎧</div>
+            </div>
+            <div id="soundWaveContainer" class="flex items-center gap-1 h-8 px-3 bg-slate-800/90 rounded-xl border border-slate-700">
+              <div class="wave-bar"></div>
+              <div class="wave-bar"></div>
+              <div class="wave-bar"></div>
+              <div class="wave-bar"></div>
+              <div class="wave-bar"></div>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap items-center justify-center gap-3 w-full lg:w-auto">
+            <div class="flex items-center gap-2 bg-indigo-50/90 border-2 border-indigo-200 px-3.5 py-2.5 rounded-2xl">
+              <i class="fa-solid fa-microphone-lines text-indigo-600"></i>
+              <span class="text-xs font-black text-indigo-950">صوت المتحدثة:</span>
+              <select id="voiceAccentSelect" onchange="onVoiceAccentChanged()" class="bg-white text-indigo-950 font-extrabold text-xs md:text-sm rounded-xl px-2.5 py-1 border border-indigo-200 outline-none cursor-pointer">
+                <option value="natural-female" selected>🌟 متحدثة طبيعية فاخرة (Sonia/Clara HD)</option>
+                <option value="uk-female">🇬🇧 بريطانية واضحة (UK Female HD)</option>
+                <option value="us-female">🇺🇸 أمريكية طبيعية (US Female HD)</option>
+                <option value="uk-male">🇬🇧 متحدث بريطاني (UK Male)</option>
+              </select>
+            </div>
+
+            <div class="flex items-center gap-2 bg-purple-50/90 border-2 border-purple-200 px-3.5 py-2.5 rounded-2xl">
+              <i class="fa-solid fa-gauge-high text-purple-600"></i>
+              <select id="speechRateSelect" onchange="changeSpeechRate()" class="bg-white text-purple-950 font-extrabold text-xs md:text-sm rounded-xl px-2.5 py-1 border border-purple-200 outline-none cursor-pointer">
+                <option value="0.8">🐢 هادئ للتعلم (0.80x)</option>
+                <option value="0.92" selected>✨ طبيعي متزامن (0.92x)</option>
+                <option value="1.0">⚡ سرعة عادية (1.0x)</option>
+              </select>
+            </div>
+
+            <button onclick="toggleAllTranslations()" class="btn-3d btn-3d-white px-4 py-2.5 rounded-2xl font-black text-xs md:text-sm flex items-center gap-2">
+              <i class="fa-solid fa-language text-indigo-600 text-lg"></i>
+              <span id="transBtnText">إخفاء الترجمة العربية</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="mt-4 bg-slate-200/80 h-2.5 rounded-full overflow-hidden">
+          <div id="readingProgressBar" class="h-full bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 w-0 transition-all duration-200"></div>
+        </div>
+      </div>
+
+      <div class="glass-studio-card p-6 md:p-10 relative overflow-hidden">
+        <div class="flex flex-wrap items-center justify-between gap-4 pb-5 mb-6 border-b-2 border-slate-100" dir="ltr">
+          <div class="flex items-center gap-3">
+            <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-pink-500 via-amber-500 to-emerald-500 p-0.5 shadow-md">
+              <div class="w-full h-full bg-white rounded-2xl flex items-center justify-center text-2xl">🎉</div>
+            </div>
+            <div>
+              <div class="en-display font-bold text-slate-900 text-lg flex items-center gap-2">
+                Back to School Celebration Day!
+                <span class="bg-emerald-100 text-emerald-700 text-xs px-2.5 py-0.5 rounded-full">Exercise 5 Story</span>
+              </div>
+              <div class="en-font text-xs text-slate-500 font-bold">Read and listen to the complete story with Past Simple (was / were)</div>
+            </div>
+          </div>
+          <span class="bg-pink-100 text-pink-700 font-black text-xs px-3.5 py-1.5 rounded-full">💡 اضغط على أي كلمة لنطقها وترجمتها فوراً</span>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <div class="lg:col-span-5">
+            <div onclick="toggleSpeech()" class="group cursor-pointer rounded-3xl overflow-hidden border-4 border-white shadow-xl bg-gradient-to-b from-amber-50 via-orange-50/40 to-emerald-100 relative transition-transform duration-300 hover:scale-[1.02]">
+              <div class="absolute top-3 left-3 z-10 bg-pink-600/95 text-white en-display text-xs font-bold px-3.5 py-1.5 rounded-full shadow">🎂 School Playground Party</div>
+              <svg viewBox="0 0 500 400" class="w-full h-auto object-cover">
+                <defs>
+                  <linearGradient id="wallGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#fef3c7"/>
+                    <stop offset="65%" stop-color="#fde68a"/>
+                    <stop offset="65%" stop-color="#a7f3d0"/>
+                    <stop offset="100%" stop-color="#6ee7b7"/>
+                  </linearGradient>
+                </defs>
+                <rect width="500" height="400" fill="url(#wallGrad)"/>
+                <path d="M0 30 Q125 65 250 30 Q375 65 500 30" fill="none" stroke="#f59e0b" stroke-width="3"/>
+                <polygon points="40,38 60,75 80,42" fill="#ec4899"/>
+                <polygon points="110,46 130,82 150,46" fill="#6366f1"/>
+                <polygon points="180,40 200,75 220,35" fill="#10b981"/>
+                <polygon points="280,36 300,74 320,42" fill="#f59e0b"/>
+                <polygon points="350,45 370,82 390,45" fill="#ec4899"/>
+                <polygon points="420,40 440,75 460,34" fill="#3b82f6"/>
+                <ellipse cx="245" cy="215" rx="95" ry="26" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="4"/>
+                <rect x="165" y="135" width="160" height="75" rx="14" fill="#451a03"/>
+                <ellipse cx="245" cy="135" rx="80" ry="22" fill="#78350f"/>
+                <path d="M165 135 Q180 158 195 140 Q215 162 235 140 Q255 162 275 140 Q295 162 310 140 Q320 155 325 135" fill="none" stroke="#fffbeb" stroke-width="10" stroke-linecap="round"/>
+                <path d="M245 128 Q255 95 272 88" fill="none" stroke="#991b1b" stroke-width="3.5" stroke-linecap="round"/>
+                <circle cx="245" cy="128" r="13" fill="#e11d48"/>
+                <circle cx="241" cy="124" r="4" fill="#fda4af"/>
+              </svg>
+              <div class="bg-white/95 px-5 py-3 flex items-center justify-between border-t border-slate-100" dir="ltr">
+                <button onclick="event.stopPropagation(); likeLessonPost()" class="flex items-center gap-2 text-rose-500 hover:scale-110 transition">
+                  <i id="postHeartIcon" class="fa-solid fa-heart text-2xl"></i>
+                  <span id="postLikeCount" class="en-display font-bold text-slate-800">215</span>
+                </button>
+                <span class="en-font text-xs font-extrabold text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full">All Sorts Celebration 🎉</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-7 space-y-6">
+            <div class="p-6 rounded-3xl bg-gradient-to-br from-white via-white to-amber-50/60 border-2 border-amber-200 shadow-sm">
+              <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                <span class="bg-amber-100 text-amber-900 font-black text-xs px-3.5 py-1.5 rounded-xl flex items-center gap-2">
+                  <span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span> الفقرة الأولى • Playground & Delicious Food
+                </span>
+                <button onclick="readParagraph(1)" class="btn-3d btn-3d-indigo px-4 py-1.5 rounded-xl text-xs font-black flex items-center gap-2">
+                  <i class="fa-solid fa-volume-high"></i> استمع للفقرة 1
+                </button>
+              </div>
+              <div id="read-p1" class="en-font text-xl md:text-2xl leading-[2.15] text-slate-800 text-left font-bold tracking-wide" dir="ltr"></div>
+              <div class="arabic-trans-box mt-4 bg-amber-50/90 border-r-4 border-amber-500 p-4 rounded-2xl text-slate-800 font-bold text-base leading-relaxed">
+                <div class="text-xs font-black text-amber-800 mb-1 flex items-center gap-1.5"><i class="fa-solid fa-language"></i> الترجمة العربية:</div>
+                كان يوم الأحد هو يوم احتفال العودة إلى المدرسة! كنا سعداء في الاحتفال لأنه كان ممتعاً. لم يكن الاحتفال في غرفة الصف، بل كان في ساحة ملعب المدرسة. كان هناك ثلاثة موسيقيين شباب، وكان الطعام لذيذاً! كانت هناك شطائر (سندويشات)، وكانت هناك كعكة شوكولاتة كبيرة أيضاً.
+              </div>
+            </div>
+
+            <div class="p-6 rounded-3xl bg-gradient-to-br from-white via-white to-emerald-50/60 border-2 border-emerald-200 shadow-sm">
+              <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                <span class="bg-emerald-100 text-emerald-900 font-black text-xs px-3.5 py-1.5 rounded-xl flex items-center gap-2">
+                  <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span> الفقرة الثانية • Friends, Parents & Best Day!
+                </span>
+                <button onclick="readParagraph(2)" class="btn-3d btn-3d-indigo px-4 py-1.5 rounded-xl text-xs font-black flex items-center gap-2">
+                  <i class="fa-solid fa-volume-high"></i> استمع للفقرة 2
+                </button>
+              </div>
+              <div id="read-p2" class="en-font text-xl md:text-2xl leading-[2.15] text-slate-800 text-left font-bold tracking-wide" dir="ltr"></div>
+              <div class="arabic-trans-box mt-4 bg-emerald-50/90 border-r-4 border-emerald-500 p-4 rounded-2xl text-slate-800 font-bold text-base leading-relaxed">
+                <div class="text-xs font-black text-emerald-800 mb-1 flex items-center gap-1.5"><i class="fa-solid fa-language"></i> الترجمة العربية:</div>
+                جميع أصدقائنا من (All Sorts) ومعلمتنا كانوا هناك. لم يكن والدانا في الاحتفال لأنهم كانوا في العمل. لقد كان أفضل يوم في المدرسة!
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-8 rounded-[2.25rem] p-7 md:p-8 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-white shadow-2xl text-center border-4 border-white">
+          <div class="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md px-4 py-1.5 rounded-full text-xs md:text-sm font-black mb-3 border border-white/30">
+            <i class="fa-solid fa-lightbulb text-yellow-300"></i>
+            <span>القاعدة الذهبية في الدرس • Past Simple of Verb To Be</span>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto mt-2" dir="ltr">
+            <div onclick="speakText('I, He, She, It was. Negative: was not, wasn\'t.', 0.85)" class="cursor-pointer bg-white/15 hover:bg-white/25 transition p-4 rounded-2xl border border-white/30 text-center">
+              <div class="en-display text-xl md:text-2xl font-bold text-yellow-300">was / wasn't</div>
+              <div class="en-font text-sm font-bold text-white mt-1">Singular (المفرد): I • He • She • It • The food</div>
+            </div>
+            <div onclick="speakText('We, You, They were. Negative: were not, weren\'t.', 0.85)" class="cursor-pointer bg-white/15 hover:bg-white/25 transition p-4 rounded-2xl border border-white/30 text-center">
+              <div class="en-display text-xl md:text-2xl font-bold text-emerald-300">were / weren't</div>
+              <div class="en-font text-sm font-bold text-white mt-1">Plural (الجمع): We • You • They • Sandwiches • Parents</div>
+            </div>
+          </div>
+          <div class="arabic-trans-box mt-5 bg-white/95 text-indigo-950 p-4 rounded-2xl shadow-lg max-w-3xl mx-auto text-center border-2 border-indigo-200">
+            <p class="font-black text-base md:text-xl text-slate-800 text-center">
+              💡 نستخدم <span class="text-indigo-600 en-display">was / wasn't</span> مع المفرد، ونستخدم <span class="text-purple-600 en-display">were / weren't</span> مع الجمع!
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Word Meaning Toast -->
+      <div id="wordMeaningToast" class="fixed bottom-6 left-1/2 -translate-x-1/2 w-[92%] max-w-md bg-slate-900/95 backdrop-blur-xl text-white rounded-3xl p-4 shadow-2xl border-2 border-indigo-400/50 flex items-center justify-between gap-4 z-50 transform translate-y-32 opacity-0 transition-all duration-300 pointer-events-none">
+        <div class="flex items-center gap-3.5">
+          <button onclick="speakText(document.getElementById('wmEnglish').innerText, 0.8)" class="w-12 h-12 rounded-2xl bg-indigo-500 hover:bg-indigo-400 text-white flex items-center justify-center text-xl shadow-lg shrink-0 transition">
+            <i class="fa-solid fa-volume-high"></i>
+          </button>
+          <div>
+            <div class="flex items-center gap-2">
+              <span id="wmEnglish" class="en-display font-bold text-yellow-300 text-xl capitalize"></span>
+              <span class="text-[11px] bg-white/15 px-2 py-0.5 rounded-md text-indigo-200 font-bold">انقر للسماع</span>
+            </div>
+            <div id="wmArabic" class="text-white font-extrabold text-base mt-0.5"></div>
+          </div>
+        </div>
+        <button onclick="closeWordMeaning()" class="w-9 h-9 rounded-xl bg-white/10 hover:bg-rose-500 text-white flex items-center justify-center transition">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+    </section>
+
+    <!-- ================= SECTION 2: ADVERBS & SENTENCE ORDER (EX 3 & 4) ================= -->
+    <section id="section-adverbs" class="tab-content hidden animate-section space-y-10">
+      <div class="glass-studio-card p-6 md:p-10 border-2 border-pink-200">
+        <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 pb-6 mb-6 border-b-2 border-slate-100">
+          <div>
+            <div class="inline-flex items-center gap-2 bg-pink-100 text-pink-800 px-3.5 py-1 rounded-full text-xs font-black mb-1">
+              <span class="w-6 h-6 rounded-full bg-pink-600 text-white inline-flex items-center justify-center en-display">3</span>
+              <span>Match the Adverbs of Frequency with checks (✓) and crosses (✗)</span>
+            </div>
+            <h2 class="text-2xl md:text-3xl font-black text-slate-900">طابق ظروف التكرار مع علامات الصح (✓) والخطأ (✗)</h2>
+          </div>
+          <div class="flex flex-wrap items-center gap-2.5">
+            <button onclick="hintEx3()" class="btn-3d btn-3d-amber px-4 py-2 rounded-2xl font-black text-xs md:text-sm flex items-center gap-2"><i class="fa-solid fa-lightbulb"></i><span>مساعدة ذكية</span></button>
+            <button onclick="resetEx3()" class="btn-3d btn-3d-white px-4 py-2 rounded-2xl font-black text-xs md:text-sm flex items-center gap-2"><i class="fa-solid fa-rotate-right"></i><span>إعادة ضبط</span></button>
+            <button onclick="checkEx3()" class="btn-3d btn-3d-emerald px-5 py-2 rounded-2xl font-black text-xs md:text-sm flex items-center gap-2"><i class="fa-solid fa-circle-check"></i><span>تحقق من التوصيل</span></button>
+          </div>
+        </div>
+
+        <div class="bg-gradient-to-r from-pink-50 via-purple-50 to-indigo-50 p-5 rounded-3xl border-2 border-pink-200 mb-8" dir="ltr">
+          <div class="text-xs font-black text-pink-800 mb-3 text-right" dir="rtl"><i class="fa-solid fa-hand-pointer ml-1"></i> اسحب الرمز أو انقر عليه ثم انقر على المربع المناسب:</div>
+          <div id="ex3BankContainer" class="flex flex-wrap items-center justify-center gap-4"></div>
+        </div>
+
+        <div id="ex3SlotsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4" dir="ltr"></div>
+        <div id="ex3Feedback" class="hidden mt-6 p-5 rounded-2xl text-center font-black"></div>
+      </div>
+
+      <div class="glass-studio-card p-6 md:p-10 border-2 border-indigo-200">
+        <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 pb-6 mb-6 border-b-2 border-slate-100">
+          <div>
+            <div class="inline-flex items-center gap-2 bg-indigo-100 text-indigo-800 px-3.5 py-1 rounded-full text-xs font-black mb-1">
+              <span class="w-6 h-6 rounded-full bg-indigo-600 text-white inline-flex items-center justify-center en-display">4</span>
+              <span>Order the words to make sentences</span>
+            </div>
+            <h2 class="text-2xl md:text-3xl font-black text-slate-900">رتب الكلمات المبعثرة لتكوين جمل صحيحة</h2>
+          </div>
+          <div class="flex flex-wrap items-center gap-2.5">
+            <button onclick="solveAllEx4()" class="btn-3d btn-3d-amber px-4 py-2 rounded-2xl font-black text-xs md:text-sm flex items-center gap-2"><i class="fa-solid fa-wand-magic-sparkles"></i><span>إظهار الحل النموذجي</span></button>
+            <button onclick="resetAllEx4()" class="btn-3d btn-3d-white px-4 py-2 rounded-2xl font-black text-xs md:text-sm flex items-center gap-2"><i class="fa-solid fa-rotate-right"></i><span>إعادة ضبط الجمل</span></button>
+          </div>
+        </div>
+        <div id="ex4SentencesContainer" class="space-y-6"></div>
+      </div>
+    </section>
+
+    <!-- ================= SECTION 3: DRAG & DROP BLANKS (EX 5) ================= -->
+    <section id="section-dragdrop" class="tab-content hidden animate-section">
+      <div class="glass-studio-card p-6 mb-8 border-2 border-emerald-200">
+        <div class="flex flex-col lg:flex-row items-center justify-between gap-5">
+          <div>
+            <div class="inline-flex items-center gap-2 bg-emerald-100 text-emerald-800 px-3.5 py-1 rounded-full text-xs font-black mb-1">
+              <span class="w-6 h-6 rounded-full bg-pink-600 text-white inline-flex items-center justify-center en-display">5</span>
+              <span>Look and complete with was/wasn't or were/weren't (12 Blanks)</span>
+            </div>
+            <h2 class="text-2xl md:text-3xl font-black text-slate-900">أكمل القصة بـ (was / wasn't) أو (were / weren't)</h2>
+          </div>
+          <div class="flex flex-wrap items-center gap-3">
+            <div class="bg-slate-100 border-2 border-slate-200 px-4 py-2 rounded-2xl flex items-center gap-2">
+              <span class="text-xs font-black text-slate-600">الإنجاز:</span>
+              <span id="ddProgressText" class="en-display text-lg font-bold text-indigo-600">0 / 12</span>
+            </div>
+            <button onclick="solveOneHint()" class="btn-3d btn-3d-amber px-4 py-2.5 rounded-2xl font-black text-xs md:text-sm flex items-center gap-2"><i class="fa-solid fa-lightbulb"></i><span>مساعدة ذكية</span></button>
+            <button onclick="resetDragDrop()" class="btn-3d btn-3d-white px-4 py-2.5 rounded-2xl font-black text-xs md:text-sm flex items-center gap-2"><i class="fa-solid fa-rotate-right"></i><span>إعادة ضبط</span></button>
+            <button onclick="checkAnswers()" class="btn-3d btn-3d-emerald px-6 py-2.5 rounded-2xl font-black text-sm md:text-base flex items-center gap-2"><i class="fa-solid fa-circle-check text-lg"></i><span>تحقق من إجاباتي</span></button>
+          </div>
+        </div>
+        <div class="mt-4 bg-slate-200/80 h-3 rounded-full overflow-hidden">
+          <div id="ddProgressBar" class="h-full bg-gradient-to-r from-indigo-500 to-emerald-500 w-0 transition-all duration-300"></div>
+        </div>
+      </div>
+
+      <div class="glass-studio-card p-6 md:p-10">
+        <div class="bg-gradient-to-r from-pink-50 via-indigo-50 to-emerald-50 rounded-3xl p-5 md:p-6 border-2 border-indigo-300 shadow-inner mb-8 sticky top-36 z-30 backdrop-blur-xl">
+          <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+            <span class="text-xs md:text-sm font-black text-indigo-950 flex items-center gap-2"><i class="fa-solid fa-layer-group text-pink-600"></i> بنك الكلمات الدائم (اسحب الكلمة أو انقر عليها ثم انقر على الفراغ):</span>
+            <span class="en-display text-xs font-bold text-indigo-600 bg-white px-3 py-1 rounded-full border border-indigo-200">Unlimited Word Bank</span>
+          </div>
+          <div id="wordsContainer" class="flex flex-wrap gap-4 items-center justify-center en-display" dir="ltr"></div>
+        </div>
+
+        <div class="space-y-6 en-font text-xl md:text-2xl leading-[2.65] text-slate-800 font-bold text-left" dir="ltr">
+          <div class="bg-white/95 p-6 md:p-8 rounded-3xl border-2 border-indigo-100 shadow-sm relative">
+            <div class="en-display text-xs font-bold uppercase tracking-wider text-pink-600 mb-3 flex items-center justify-between">
+              <span><i class="fa-solid fa-cake-candles mr-1"></i> Back to School Celebration Day (Blanks 1 - 12)</span>
+            </div>
+            <p>
+              Sunday <span class="text-pink-600 font-black text-base align-super">1</span><span class="drop-slot" data-slot="1" data-answer="was"></span> the back to school celebration day! We <span class="text-pink-600 font-black text-base align-super">2</span><span class="drop-slot" data-slot="2" data-answer="were"></span> happy at the celebration because it <span class="text-pink-600 font-black text-base align-super">3</span><span class="drop-slot" data-slot="3" data-answer="was"></span> fun. The celebration <span class="text-pink-600 font-black text-base align-super">4</span><span class="drop-slot" data-slot="4" data-answer="wasn't"></span> in the classroom, it <span class="text-pink-600 font-black text-base align-super">5</span><span class="drop-slot" data-slot="5" data-answer="was"></span> on the school playground. There <span class="text-pink-600 font-black text-base align-super">6</span><span class="drop-slot" data-slot="6" data-answer="were"></span> three young musicians, and the food <span class="text-pink-600 font-black text-base align-super">7</span><span class="drop-slot" data-slot="7" data-answer="was"></span> delicious! There <span class="text-pink-600 font-black text-base align-super">8</span><span class="drop-slot" data-slot="8" data-answer="were"></span> sandwiches, and there <span class="text-pink-600 font-black text-base align-super">9</span><span class="drop-slot" data-slot="9" data-answer="was"></span> a big chocolate cake, too. All the <em>All Sorts</em> and our teacher, were there. Our parents <span class="text-pink-600 font-black text-base align-super">10</span><span class="drop-slot" data-slot="10" data-answer="weren't"></span> at the celebration because they <span class="text-pink-600 font-black text-base align-super">11</span><span class="drop-slot" data-slot="11" data-answer="were"></span> at work. It <span class="text-pink-600 font-black text-base align-super">12</span><span class="drop-slot" data-slot="12" data-answer="was"></span> the best day of school!
+            </p>
+          </div>
+        </div>
+        <div id="exerciseResultBox" class="hidden mt-8 p-6 rounded-3xl text-center border-4"></div>
+      </div>
+    </section>
+
+    <!-- ================= SECTION 4: ROLE-PLAY & Q&A STUDIO (EX 6) ================= -->
+    <section id="section-roleplay" class="tab-content hidden animate-section">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-10">
+        <div class="lg:col-span-5">
+          <div class="glass-studio-card p-6 h-full border-2 border-indigo-100">
+            <div class="flex items-center justify-between mb-5">
+              <h3 class="text-lg md:text-xl font-black text-slate-800 flex items-center gap-2.5">
+                <span class="w-7 h-7 rounded-full bg-pink-600 text-white inline-flex items-center justify-center en-display text-sm">6</span>
+                <span>أسئلة الاستيعاب (اختر سؤالاً):</span>
+              </h3>
+              <span class="bg-indigo-100 text-indigo-800 text-xs font-black px-3 py-1 rounded-full">5 محادثات</span>
+            </div>
+            <div id="roleplayQuestionsList" class="space-y-3.5"></div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-7">
+          <div class="glass-studio-card p-6 md:p-8 border-2 border-indigo-100 flex flex-col justify-between h-full">
+            <div class="flex items-center justify-between pb-4 mb-6 border-b-2 border-slate-100">
+              <div class="flex items-center gap-3">
+                <div id="rpStageNumber" class="w-11 h-11 rounded-full bg-indigo-600 text-white en-display font-bold text-lg flex items-center justify-center shadow-md">1</div>
+                <div>
+                  <h4 class="font-black text-slate-900 text-lg md:text-xl">استوديو الحوار والاستيعاب</h4>
+                  <p class="text-xs font-bold text-slate-500">Read again and answer .6</p>
+                </div>
+              </div>
+              <button onclick="playCurrentRoleplay()" class="btn-3d btn-3d-indigo px-5 py-2.5 rounded-2xl font-black text-sm flex items-center gap-2">
+                <i class="fa-solid fa-volume-high"></i><span>استمع للحوار كاملاً</span>
+              </button>
+            </div>
+
+            <div class="space-y-7 my-auto py-2">
+              <div class="flex items-start gap-4">
+                <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-pink-500 to-rose-500 text-white flex items-center justify-center text-3xl shadow-lg shrink-0 border-2 border-white">🧑‍🏫</div>
+                <div class="flex-1">
+                  <div class="flex items-center gap-2 mb-1.5">
+                    <span class="en-display font-bold text-sm text-pink-600">Student A (Sarah)</span>
+                    <button onclick="playRoleplayQuestion()" class="w-8 h-8 rounded-full bg-pink-100 hover:bg-pink-200 text-pink-700 flex items-center justify-center transition" title="استمع للسؤال">
+                      <i class="fa-solid fa-volume-high text-xs"></i>
+                    </button>
+                  </div>
+                  <div class="bg-white p-5 md:p-6 rounded-3xl rounded-tr-none border-2 border-pink-100 shadow-md text-left" dir="ltr">
+                    <p id="rpQuestionDisplay" class="en-font text-xl md:text-2xl font-black text-slate-900 leading-snug"></p>
+                  </div>
+                  <p id="rpQuestionArabic" class="text-sm md:text-base font-bold text-slate-600 mt-2 mr-1"></p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-4">
+                <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-indigo-600 to-purple-600 text-white flex items-center justify-center text-3xl shadow-lg shrink-0 border-2 border-white">🧒🏻</div>
+                <div class="flex-1">
+                  <div class="flex items-center gap-2 mb-1.5">
+                    <span class="en-display font-bold text-sm text-indigo-600">Student B (Asma)</span>
+                    <button onclick="playRoleplayAnswer()" class="w-8 h-8 rounded-full bg-indigo-100 hover:bg-indigo-200 text-indigo-700 flex items-center justify-center transition" title="استمع للإجابة">
+                      <i class="fa-solid fa-volume-high text-xs"></i>
+                    </button>
+                  </div>
+                  <div class="bg-gradient-to-r from-indigo-600 to-purple-600 p-5 md:p-6 rounded-3xl rounded-tr-none text-white shadow-xl text-left transition-all duration-300" dir="ltr">
+                    <p id="rpAnswerDisplay" class="en-font text-xl md:text-2xl font-black leading-snug"></p>
+                  </div>
+                  <p id="rpAnswerArabic" class="text-sm md:text-base font-bold text-indigo-900 mt-2 mr-1"></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ex 6 Writing List -->
+      <div class="glass-studio-card p-6 md:p-8 border-2 border-teal-200">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+          <div>
+            <span class="bg-teal-100 text-teal-800 text-xs font-black px-3.5 py-1 rounded-full">دفتر الإجابات التفاعلي • Book Activity 6</span>
+            <h3 class="text-xl md:text-2xl font-black text-slate-900 mt-1">أجب عن الأسئلة كتابياً كما في الكتاب المدرسي (Read again and answer)</h3>
+          </div>
+          <button onclick="fillSampleEx6Answers()" class="btn-3d btn-3d-emerald px-5 py-2.5 rounded-2xl text-xs md:text-sm font-black flex items-center gap-2 w-fit">
+            <i class="fa-solid fa-wand-sparkles"></i><span>تعبئة جميع الإجابات النموذجية</span>
+          </button>
+        </div>
+        <div id="ex6WritingList" class="space-y-4" dir="ltr"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    /* =====================================================================
+     * LESSON DATA & DICTIONARY (PAGE 9)
+     * ===================================================================== */
+    const paragraphsData = [
+      {
+        id: "read-p1",
+        text: "Sunday was the back to school celebration day! We were happy at the celebration because it was fun. The celebration wasn't in the classroom, it was on the school playground. There were three young musicians, and the food was delicious! There were sandwiches, and there was a big chocolate cake, too."
+      },
+      {
+        id: "read-p2",
+        text: "All the All Sorts and our teacher, were there. Our parents weren't at the celebration because they were at work. It was the best day of school!"
+      }
+    ];
+
+    const vocabularyDictionary = {
+      "sunday": "يوم الأحد", "was": "كان / كانت (للمفرد في الماضي)", "the": "الـ (للتعريف)", "back": "العودة", "to": "إلى", "school": "المدرسة", "celebration": "احتفال / حفلة", "day": "يوم", "we": "نحن", "were": "كانوا / كنا (للجمع في الماضي)", "happy": "سعداء / مسرورين", "at": "في", "because": "لأن", "it": "هو / هي (لغير العاقل)", "fun": "ممتع / مرح", "wasnt": "لم يكن / لم تكن (نفي المفرد)", "in": "في / داخل", "classroom": "غرفة الصف / الفصل", "on": "على / في", "playground": "ساحة الملعب المدرسية", "there": "هناك", "three": "ثلاثة (3)", "young": "شباب / صغار السن", "musicians": "عازفين / موسيقيين", "and": "وَ", "food": "الطعام", "delicious": "لذيذ / شهي جداً", "sandwiches": "شطائر / سندويشات", "a": "أداة نكرة للمفرد", "big": "كبير الحجم", "chocolate": "شوكولاتة", "cake": "كعكة / تورتة", "too": "أيضاً", "all": "جميع / كل", "sorts": "أصدقاء (All Sorts) في الكتاب", "our": "لنا / خاصتنا", "teacher": "معلم / معلمة", "parents": "الوالدين (الأب والأم)", "werent": "لم يكونوا (نفي الجمع)", "they": "هم", "work": "العمل / الوظيفة", "best": "الأفضل (صيغة تفضيل)", "of": "من / في", "always": "دائماً (100%)", "usually": "عادةً (80%)", "often": "غالباً (60%)", "sometimes": "أحياناً (30%)", "never": "أبداً (0%)"
+    };
+
+    const ex3AdverbsData = [
+      { num: 1, adverb: "always", arabic: "دائماً (100%)", correctLetter: "c", correctChecks: "✓✓✓✓" },
+      { num: 2, adverb: "usually", arabic: "عادةً (80%)", correctLetter: "e", correctChecks: "✓✓✓" },
+      { num: 3, adverb: "often", arabic: "غالباً (60%)", correctLetter: "a", correctChecks: "✓✓" },
+      { num: 4, adverb: "sometimes", arabic: "أحياناً (30%)", correctLetter: "d", correctChecks: "✓" },
+      { num: 5, adverb: "never", arabic: "أبداً (0%)", correctLetter: "b", correctChecks: "✗" }
+    ];
+
+    const ex3SymbolsBank = [
+      { letter: "a", symbols: "✓✓", isCross: false },
+      { letter: "b", symbols: "✗", isCross: true },
+      { letter: "c", symbols: "✓✓✓✓", isCross: false },
+      { letter: "d", symbols: "✓", isCross: false },
+      { letter: "e", symbols: "✓✓✓", isCross: false }
+    ];
+
+    const ex4SentencesData = [
+      { id: 1, prompt: "makes / My dad / dinner / often / .", chunks: ["makes", "My dad", "dinner", "often", "."], correctSentence: "My dad often makes dinner.", arabic: "يصنع أبي العشاء غالباً." },
+      { id: 2, prompt: "at / school / We / sometimes / celebrations / have / .", chunks: ["at", "school", "We", "sometimes", "celebrations", "have", "."], correctSentence: "We sometimes have celebrations at school.", arabic: "نحن أحياناً نقيم احتفالات في المدرسة." },
+      { id: 3, prompt: "does / his / in / the / Adel / park / homework / never / .", chunks: ["does", "his", "in", "the", "Adel", "park", "homework", "never", "."], correctSentence: "Adel never does his homework in the park.", arabic: "عادل لا يؤدي واجبه المنزلي في الحديقة أبداً." },
+      { id: 4, prompt: "I / mornings / always / have / on / Tuesday / class / art / .", chunks: ["I", "mornings", "always", "have", "on", "Tuesday", "class", "art", "."], correctSentence: "I always have art class on Tuesday mornings.", arabic: "أنا دائماً لدي حصة فنية في صباح أيام الثلاثاء." },
+      { id: 5, prompt: "My / goes / to / the / best friend / on / Thursdays / often / school / club / .", chunks: ["My", "goes", "to", "the", "best friend", "on", "Thursdays", "often", "school", "club", "."], correctSentence: "My best friend often goes to the school club on Thursdays.", arabic: "صديقي المفضل يذهب غالباً إلى النادي المدرسي أيام الخميس." }
+    ];
+
+    const wordBankData = [
+      { id: "w-was", text: "was", hint: "مفرد مثبت" },
+      { id: "w-wasnt", text: "wasn't", hint: "مفرد منفي" },
+      { id: "w-were", text: "were", hint: "جمع مثبت" },
+      { id: "w-werent", text: "weren't", hint: "جمع منفي" }
+    ];
+
+    const roleplayData = [
+      { id: 1, q: "Where were the students and the All Sorts on Sunday?", qAr: "أين كان الطلاب وأصدقاء (All Sorts) يوم الأحد؟", correctAnswer: "They were at the school celebration.", ansAr: "كانوا في احتفال المدرسة." },
+      { id: 2, q: "Was the celebration in the classroom?", qAr: "هل كان الاحتفال داخل غرفة الصف؟", correctAnswer: "No, it wasn't. It was on the school playground.", ansAr: "لا، لم يكن كذلك. لقد كان في ساحة ملعب المدرسة." },
+      { id: 3, q: "What was delicious?", qAr: "ما الشيء الذي كان لذيذاً في الحفل؟", correctAnswer: "The food was delicious.", ansAr: "كان الطعام لذيذاً." },
+      { id: 4, q: "Who wasn't at the celebration?", qAr: "من الذي لم يحضر الاحتفال؟", correctAnswer: "Their parents weren't at the celebration.", ansAr: "لم يكن والداهم في الاحتفال." },
+      { id: 5, q: "Was the celebration the worst day at school?", qAr: "هل كان يوم الاحتفال هو أسوأ يوم في المدرسة؟", correctAnswer: "No, it was the best day of school!", ansAr: "لا، لقد كان أفضل يوم في المدرسة!" }
+    ];
+
+    let fullLessonText = "";
+    let wordTokensMap = [];
+    let sentencesMap = [];
+    let isSpeaking = false;
+    let currentSpeechRate = 0.92;
+    let showTranslations = true;
+    let userStars = 0;
+    let postLikes = 215;
+    let speechSessionId = 0;
+
+    window.onload = function() {
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.getVoices();
+        window.speechSynthesis.onvoiceschanged = () => window.speechSynthesis.getVoices();
+      }
+      initializeTextTokens();
+      initializeEx3Matching();
+      initializeEx4Builder();
+      initializeWordBank();
+      initializeRoleplay();
+      initializeEx6WritingList();
+    };
+
+    function changeBackgroundTheme(themeClass) {
+      const body = document.getElementById("mainBody");
+      body.classList.remove("theme-lavender", "theme-ocean", "theme-sunset", "theme-emerald");
+      body.classList.add(themeClass);
+      playPopSound();
+    }
+
+    function likeLessonPost() {
+      postLikes++;
+      document.getElementById("postLikeCount").innerText = postLikes;
+      const heart = document.getElementById("postHeartIcon");
+      heart.classList.add("scale-125");
+      setTimeout(() => heart.classList.remove("scale-125"), 250);
+      addStars(1);
+      triggerConfettiMini();
+    }
+
+    function switchTab(tabId) {
+      stopSpeech();
+      document.querySelectorAll(".tab-content").forEach(el => el.classList.add("hidden"));
+      document.querySelectorAll(".nav-pill").forEach(btn => btn.classList.remove("active"));
+      const targetSection = document.getElementById(`section-${tabId}`);
+      const targetBtn = document.getElementById(`tab-${tabId}`);
+      if (targetSection && targetBtn) {
+        targetSection.classList.remove("hidden");
+        targetBtn.classList.add("active");
+      }
+      playPopSound();
+    }
+
+    function initializeTextTokens() {
+      let globalWordCounter = 0;
+      let globalSentenceCounter = 0;
+      fullLessonText = "";
+      wordTokensMap = [];
+      sentencesMap = [];
+
+      paragraphsData.forEach((pData, pIdx) => {
+        const container = document.getElementById(pData.id);
+        if (!container) return;
+        container.innerHTML = "";
+
+        const rawSentences = pData.text.match(/[^.!?]+[.!?]+/g) || [pData.text];
+        rawSentences.forEach((sentenceStr) => {
+          const cleanSentence = sentenceStr.trim();
+          if (!cleanSentence) return;
+
+          const sIndex = globalSentenceCounter++;
+          const playChip = document.createElement("button");
+          playChip.className = "sentence-play-chip";
+          playChip.title = "استمع لهذه الجملة بالتزامن الفوري";
+          playChip.innerHTML = `<i class="fa-solid fa-play"></i>`;
+          playChip.onclick = (e) => { e.stopPropagation(); playFromSentence(sIndex); };
+          container.appendChild(playChip);
+
+          const words = cleanSentence.split(/\s+/);
+          let sentenceCharCursor = 0;
+          const sentenceTokens = [];
+
+          words.forEach((word) => {
+            const cleanWord = word.replace(/[^a-zA-Z]/g, '').toLowerCase();
+            const span = document.createElement("span");
+            span.className = "word-token opacity-50"; // default to faded
+            span.id = `token-${globalWordCounter}`;
+            span.dataset.sentence = sIndex;
+            span.innerText = word + " ";
+
+            const charStart = sentenceCharCursor;
+            const charEnd = sentenceCharCursor + word.length;
+            sentenceCharCursor = charEnd + 1;
+
+            const tokenObj = {
+              id: span.id, word: cleanWord, raw: word, index: globalWordCounter, sentenceIndex: sIndex, paragraphIndex: pIdx + 1, charStart, charEnd
+            };
+
+            span.onclick = (e) => {
+              e.stopPropagation();
+              speakSingleWord(word.replace(/[.,!]/g, ''), span);
+              openWordMeaning(cleanWord, word);
+            };
+
+            container.appendChild(span);
+            wordTokensMap.push(tokenObj);
+            sentenceTokens.push(tokenObj);
+            globalWordCounter++;
+          });
+
+          sentencesMap.push({ sentenceIndex: sIndex, paragraphIndex: pIdx + 1, text: words.join(" "), tokens: sentenceTokens });
+        });
+        fullLessonText += pData.text + " ";
+      });
+      // Initial reset opacity
+      document.querySelectorAll(".word-token").forEach(el => el.classList.remove("opacity-50"));
+    }
+
+    function toggleAllTranslations() {
+      showTranslations = !showTranslations;
+      document.querySelectorAll(".arabic-trans-box").forEach(box => {
+        box.style.display = showTranslations ? "block" : "none";
+      });
+      document.getElementById("transBtnText").innerText = showTranslations ? "إخفاء الترجمة العربية" : "إظهار الترجمة العربية";
+      playPopSound();
+    }
+
+    function openWordMeaning(cleanWord, rawWord) {
+      const toast = document.getElementById("wordMeaningToast");
+      document.getElementById("wmEnglish").innerText = rawWord.replace(/[.,!]/g, '');
+      document.getElementById("wmArabic").innerText = vocabularyDictionary[cleanWord] || "كلمة من مفردات قصة الاحتفال";
+      toast.classList.remove("translate-y-32", "opacity-0", "pointer-events-none");
+      toast.classList.add("translate-y-0", "opacity-100");
+    }
+
+    function closeWordMeaning() {
+      const toast = document.getElementById("wordMeaningToast");
+      toast.classList.add("translate-y-32", "opacity-0", "pointer-events-none");
+      toast.classList.remove("translate-y-0", "opacity-100");
+    }
+
+    function getSelectedVoice() {
+      if (!('speechSynthesis' in window)) return null;
+      const voices = window.speechSynthesis.getVoices();
+      if (!voices || voices.length === 0) return null;
+
+      const mode = document.getElementById("voiceAccentSelect")?.value || "natural-female";
+      const englishVoices = voices.filter(v => v.lang && v.lang.toLowerCase().startsWith("en"));
+      if (englishVoices.length === 0) return voices[0];
+
+      const scoreVoice = (v) => {
+        let score = 0;
+        const langNorm = v.lang.replace('_', '-').toLowerCase();
+        const nameLower = v.name.toLowerCase();
+        const maleNames = ["ryan", "guy", "daniel", "thomas", "davis", "christopher", "david", "george", "oliver", "male"];
+
+        if (mode === "uk-male") {
+          if (langNorm.startsWith("en-gb")) score += 25;
+          if (maleNames.some(m => nameLower.includes(m))) score += 35;
+          return score;
+        }
+        if (maleNames.some(m => nameLower.includes(m)) && !nameLower.includes("female")) score -= 40;
+        if (nameLower.includes("natural") || nameLower.includes("neural") || nameLower.includes("sonia") || nameLower.includes("clara") || nameLower.includes("aria") || nameLower.includes("samantha")) score += 55;
+        if (nameLower.includes("google uk english female")) score += 45;
+        if (mode === "uk-female" && langNorm.startsWith("en-gb")) score += 24;
+        if (mode === "us-female" && langNorm.startsWith("en-us")) score += 24;
+        return score;
+      };
+
+      const ranked = [...englishVoices].sort((a, b) => scoreVoice(b) - scoreVoice(a));
+      return ranked[0] || englishVoices[0];
+    }
+
+    function onVoiceAccentChanged() {
+      const wasSpeaking = isSpeaking;
+      stopSpeech();
+      if (wasSpeaking) startReadingSentences(sentencesMap);
+    }
+
+    function changeSpeechRate() {
+      currentSpeechRate = parseFloat(document.getElementById("speechRateSelect").value);
+      if (isSpeaking) {
+        stopSpeech();
+        startReadingSentences(sentencesMap);
+      }
+    }
+
+    function toggleSpeech() {
+      if (isSpeaking) stopSpeech();
+      else startReadingSentences(sentencesMap);
+    }
+
+    function playFromSentence(sentenceIdx) {
+      const subset = sentencesMap.filter(s => s.sentenceIndex >= sentenceIdx);
+      if (subset.length > 0) startReadingSentences(subset);
+    }
+
+    function readParagraph(pNumber) {
+      const paragraphSentences = sentencesMap.filter(s => s.paragraphIndex === pNumber);
+      if (paragraphSentences.length > 0) startReadingSentences(paragraphSentences);
+    }
+
+    function startReadingSentences(sentenceList) {
+      if (!('speechSynthesis' in window) || !sentenceList || sentenceList.length === 0) return;
+      stopSpeech();
+      speechSessionId++;
+      const currentSession = speechSessionId;
+      const activeSentenceQueue = sentenceList;
+      let currentQueueIndex = 0;
+      isSpeaking = true;
+      updateAudioUIState(true);
+
+      const totalTokensInRun = sentenceList.reduce((acc, s) => acc + s.tokens.length, 0);
+      let spokenTokensSoFar = 0;
+
+      const speakNextSentence = () => {
+        if (currentSession !== speechSessionId || !isSpeaking) return;
+        if (currentQueueIndex >= activeSentenceQueue.length) {
+          isSpeaking = false;
+          updateAudioUIState(false);
+          clearHighlights();
+          document.getElementById("readingProgressBar").style.width = "100%";
+          addStars(2);
+          triggerConfettiMini();
+          return;
+        }
+
+        const sentenceObj = activeSentenceQueue[currentQueueIndex];
+        const tokens = sentenceObj.tokens;
+        const utterance = new SpeechSynthesisUtterance(sentenceObj.text);
+        utterance.rate = currentSpeechRate;
+
+        const voice = getSelectedVoice();
+        if (voice) { utterance.voice = voice; utterance.lang = voice.lang; }
+        else { utterance.lang = "en-GB"; }
+        utterance.pitch = 1.05;
+
+        // Reset sentence styling - make passed words slightly faded, active words pop
+        highlightSentenceGroup(sentenceObj.sentenceIndex);
+
+        utterance.onboundary = (event) => {
+          if (currentSession !== speechSessionId || !isSpeaking) return;
+          if (event.name !== "word") return;
+          
+          const cIdx = event.charIndex;
+          // Apply Lead-time offset for perfection
+          const matchedIdx = tokens.findIndex(t => cIdx >= t.charStart && cIdx <= t.charEnd);
+          if (matchedIdx !== -1) {
+            highlightWordPrecise(tokens[matchedIdx], sentenceObj, spokenTokensSoFar + matchedIdx + 1, totalTokensInRun);
+          }
+        };
+
+        utterance.onend = () => {
+          if (currentSession !== speechSessionId || !isSpeaking) return;
+          spokenTokensSoFar += tokens.length;
+          currentQueueIndex++;
+          setTimeout(speakNextSentence, 50); // Minimal pause between sentences
+        };
+
+        utterance.onerror = () => {
+          if (currentSession !== speechSessionId) return;
+          isSpeaking = false;
+          updateAudioUIState(false);
+          clearHighlights();
+        };
+
+        window.speechSynthesis.speak(utterance);
+      };
+      speakNextSentence();
+    }
+
+    function stopSpeech() {
+      speechSessionId++;
+      if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+      isSpeaking = false;
+      updateAudioUIState(false);
+      clearHighlights();
+      document.getElementById("readingProgressBar").style.width = "0%";
+    }
+
+    function speakSingleWord(word, element) {
+      if (!word || !('speechSynthesis' in window)) return;
+      stopSpeech();
+      if (element) {
+        document.querySelectorAll(".word-token").forEach(el => el.classList.remove("word-active"));
+        element.classList.add("word-active");
+      }
+      const u = new SpeechSynthesisUtterance(word);
+      u.rate = 0.82;
+      const voice = getSelectedVoice();
+      if (voice) { u.voice = voice; u.lang = voice.lang; }
+      u.onend = () => { if (element) setTimeout(() => element.classList.remove("word-active"), 350); };
+      window.speechSynthesis.speak(u);
+    }
+
+    function speakText(text, rate = 0.88) {
+      if (!('speechSynthesis' in window)) return;
+      stopSpeech();
+      const u = new SpeechSynthesisUtterance(text);
+      u.rate = rate;
+      const voice = getSelectedVoice();
+      if (voice) { u.voice = voice; u.lang = voice.lang; }
+      window.speechSynthesis.speak(u);
+    }
+
+    function highlightSentenceGroup(sentenceIndex) {
+      document.querySelectorAll(".word-token").forEach(el => {
+        el.classList.remove("word-active");
+        if (parseInt(el.dataset.sentence, 10) === sentenceIndex) {
+          el.classList.remove("opacity-50");
+        } else if (parseInt(el.dataset.sentence, 10) < sentenceIndex) {
+          el.classList.add("opacity-50");
+        } else {
+           el.classList.remove("opacity-50");
+        }
+      });
+    }
+
+    function highlightWordPrecise(tokenObj, sentenceObj, currentStep, totalSteps) {
+      // Hardware Lock Sync: Only highlight the current word accurately. Fade the past words in same sentence.
+      sentenceObj.tokens.forEach(t => {
+        const el = document.getElementById(t.id);
+        if (!el) return;
+        el.classList.remove("word-active");
+        if (t.index < tokenObj.index) el.classList.add("opacity-50");
+        else el.classList.remove("opacity-50");
+      });
+
+      const activeEl = document.getElementById(tokenObj.id);
+      if (activeEl) {
+        activeEl.classList.add("word-active", "opacity-100");
+        const rect = activeEl.getBoundingClientRect();
+        if (rect.top < 140 || rect.bottom > window.innerHeight - 100) {
+          activeEl.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+      }
+
+      const pct = Math.min(100, Math.round((currentStep / Math.max(1, totalSteps)) * 100));
+      document.getElementById("readingProgressBar").style.width = `${pct}%`;
+    }
+
+    function clearHighlights() {
+      document.querySelectorAll(".word-token").forEach(el => {
+        el.classList.remove("word-active", "opacity-50");
+      });
+    }
+
+    function updateAudioUIState(speaking) {
+      const playIcon = document.getElementById("playIcon");
+      const playText = document.getElementById("playText");
+      const waveBox = document.getElementById("soundWaveContainer");
+
+      if (speaking) {
+        playIcon.className = "fa-solid fa-pause";
+        playText.innerText = "يقرأ الآن بوضوح...";
+        playText.className = "text-sm font-black text-emerald-400 animate-pulse";
+        waveBox.classList.add("playing-waves");
+      } else {
+        playIcon.className = "fa-solid fa-play";
+        playText.innerText = "جاهز للقراءة 🎧";
+        playText.className = "text-sm font-black text-indigo-300";
+        waveBox.classList.remove("playing-waves");
+      }
+    }
+
+    /* ================= EXERCISE 3 ================= */
+    let selectedEx3Letter = null;
+    let ex3Matches = {};
+
+    function initializeEx3Matching() {
+      const bankContainer = document.getElementById("ex3BankContainer");
+      const slotsGrid = document.getElementById("ex3SlotsGrid");
+      bankContainer.innerHTML = "";
+      slotsGrid.innerHTML = "";
+
+      ex3SymbolsBank.forEach(item => {
+        const isUsed = Object.values(ex3Matches).includes(item.letter);
+        const chip = document.createElement("div");
+        chip.draggable = !isUsed;
+        chip.className = `draggable-word px-5 py-3 rounded-2xl flex items-center gap-3 cursor-pointer ${isUsed ? "opacity-30 pointer-events-none scale-95" : ""} ${selectedEx3Letter === item.letter ? "selected-for-drop" : ""}`;
+        chip.innerHTML = `
+          <span class="w-8 h-8 rounded-xl bg-indigo-600 text-white en-display font-bold text-lg flex items-center justify-center">${item.letter}</span>
+          <span class="text-xl font-black tracking-widest ${item.isCross ? 'text-rose-600' : 'text-pink-600'}">${item.symbols}</span>
+        `;
+        chip.addEventListener("dragstart", (e) => e.dataTransfer.setData("text/plain", item.letter));
+        chip.onclick = () => { selectedEx3Letter = (selectedEx3Letter === item.letter) ? null : item.letter; playPopSound(); initializeEx3Matching(); };
+        bankContainer.appendChild(chip);
+      });
+
+      ex3AdverbsData.forEach(adv => {
+        const matchedLetter = ex3Matches[adv.num];
+        const matchedObj = ex3SymbolsBank.find(s => s.letter === matchedLetter);
+        const card = document.createElement("div");
+        card.className = "bg-white p-5 rounded-3xl border-2 border-emerald-200 shadow-sm flex flex-col justify-between gap-4 hover:border-indigo-400 transition";
+        card.innerHTML = `
+          <div class="flex items-center justify-between">
+            <span class="w-8 h-8 rounded-full bg-emerald-700 text-white en-display font-bold text-sm flex items-center justify-center">${adv.num}</span>
+            <button onclick="speakText('${adv.adverb}', 0.85)" class="w-8 h-8 rounded-full bg-indigo-50 hover:bg-indigo-100 text-indigo-600 flex items-center justify-center text-xs transition" title="استمع للنطق"><i class="fa-solid fa-volume-high"></i></button>
+          </div>
+          <div class="text-center my-1">
+            <div class="en-display text-2xl font-bold text-slate-900">${adv.adverb}</div>
+            <div class="text-xs font-extrabold text-slate-500 mt-1" dir="rtl">${adv.arabic}</div>
+          </div>
+          <div id="ex3-box-${adv.num}" class="h-14 rounded-2xl border-3 ${matchedLetter ? "border-solid border-indigo-500 bg-indigo-50 text-indigo-900" : "border-dashed border-emerald-400 bg-emerald-50/50 text-slate-400"} flex items-center justify-center gap-2 cursor-pointer font-bold transition" onclick="handleEx3SlotClick(${adv.num})">
+            ${matchedObj ? `<span class="en-display text-xl text-indigo-700 font-bold">${matchedObj.letter}</span><span class="text-base text-pink-600 font-black">(${matchedObj.symbols})</span>` : `<span class="text-xs font-bold">ضع الرمز هنا</span>`}
+          </div>
+        `;
+        const dropBox = card.querySelector(`#ex3-box-${adv.num}`);
+        dropBox.addEventListener("dragover", (e) => e.preventDefault());
+        dropBox.addEventListener("drop", (e) => { e.preventDefault(); const letter = e.dataTransfer.getData("text/plain"); if (letter) assignEx3Match(adv.num, letter); });
+        slotsGrid.appendChild(card);
+      });
+    }
+
+    function handleEx3SlotClick(advNum) {
+      if (selectedEx3Letter) { assignEx3Match(advNum, selectedEx3Letter); selectedEx3Letter = null; }
+      else if (ex3Matches[advNum]) { delete ex3Matches[advNum]; playPopSound(); initializeEx3Matching(); }
+    }
+
+    function assignEx3Match(advNum, letter) {
+      for (const [k, v] of Object.entries(ex3Matches)) { if (v === letter) delete ex3Matches[k]; }
+      ex3Matches[advNum] = letter;
+      playPopSound();
+      initializeEx3Matching();
+    }
+
+    function checkEx3() {
+      let correct = 0;
+      ex3AdverbsData.forEach(adv => {
+        const box = document.getElementById(`ex3-box-${adv.num}`);
+        if (!box) return;
+        if (ex3Matches[adv.num] === adv.correctLetter) {
+          correct++;
+          box.className = "h-14 rounded-2xl border-2 border-emerald-500 bg-emerald-100 text-emerald-900 flex items-center justify-center gap-2 font-black shadow-sm";
+        } else {
+          box.className = "h-14 rounded-2xl border-2 border-rose-500 bg-rose-100 text-rose-900 flex items-center justify-center gap-2 font-black";
+        }
+      });
+      const fb = document.getElementById("ex3Feedback");
+      fb.classList.remove("hidden");
+      if (correct === 5) {
+        fb.className = "mt-6 p-5 rounded-2xl text-center font-black bg-emerald-100 text-emerald-900 border-2 border-emerald-400";
+        fb.innerHTML = "🌟 ممتاز! لقد طابقت جميع ظروف التكرار الخمسة بشكل صحيح (5 / 5)!";
+        addStars(3); playSuccessFanfare(); triggerConfettiMini();
+      } else {
+        fb.className = "mt-6 p-5 rounded-2xl text-center font-black bg-amber-100 text-amber-900 border-2 border-amber-400";
+        fb.innerHTML = `حصلت على ${correct} من 5. جرب مرة أخرى أو استخدم المساعدة الذكية!`;
+        playChime(320);
+      }
+    }
+
+    function hintEx3() {
+      const target = ex3AdverbsData.find(a => ex3Matches[a.num] !== a.correctLetter);
+      if (target) { assignEx3Match(target.num, target.correctLetter); speakText(target.adverb, 0.85); playChime(600); }
+    }
+
+    function resetEx3() {
+      ex3Matches = {}; selectedEx3Letter = null;
+      document.getElementById("ex3Feedback").classList.add("hidden");
+      initializeEx3Matching(); playPopSound();
+    }
+
+    /* ================= EXERCISE 4 ================= */
+    let ex4State = {};
+
+    function initializeEx4Builder() {
+      ex4SentencesData.forEach(item => {
+        if (!ex4State[item.id]) {
+          ex4State[item.id] = { available: item.chunks.map((text, idx) => ({ id: `s${item.id}-c${idx}`, text })), selected: [], status: null };
+        }
+      });
+      renderEx4Sentences();
+    }
+
+    function renderEx4Sentences() {
+      const container = document.getElementById("ex4SentencesContainer");
+      container.innerHTML = "";
+      ex4SentencesData.forEach(item => {
+        const st = ex4State[item.id];
+        const card = document.createElement("div");
+        card.className = `p-5 md:p-6 rounded-3xl border-2 transition ${st.status === "correct" ? "bg-emerald-50/70 border-emerald-300" : st.status === "wrong" ? "bg-rose-50/70 border-rose-300" : "bg-white border-slate-200"}`;
+        card.innerHTML = `
+          <div class="flex flex-wrap items-center justify-between gap-2 mb-3" dir="ltr">
+            <div class="flex items-center gap-2.5">
+              <span class="w-8 h-8 rounded-full bg-indigo-600 text-white en-display font-bold text-sm flex items-center justify-center">${item.id}</span>
+              <span class="en-font text-sm md:text-base font-extrabold text-slate-500">${item.prompt}</span>
+            </div>
+            <div class="flex items-center gap-2" dir="rtl">
+              <button onclick="playEx4Sentence(${item.id})" class="btn-3d btn-3d-indigo px-3 py-1.5 rounded-xl text-xs font-black flex items-center gap-1.5"><i class="fa-solid fa-volume-high"></i> استمع</button>
+              <button onclick="checkSingleEx4(${item.id})" class="btn-3d btn-3d-emerald px-3.5 py-1.5 rounded-xl text-xs font-black">تحقق</button>
+              <button onclick="resetSingleEx4(${item.id})" class="btn-3d btn-3d-white px-3 py-1.5 rounded-xl text-xs font-black">إعادة</button>
+            </div>
+          </div>
+          <div class="min-h-[60px] p-3.5 rounded-2xl bg-slate-50 border-2 border-dashed border-indigo-300 flex flex-wrap items-center gap-2 mb-3" dir="ltr">
+            ${st.selected.length === 0 ? `<span class="text-slate-400 text-sm font-bold">انقر على الكلمات بالأسفل بالترتيب الصحيح...</span>` : st.selected.map((wordObj, idx) => `<button onclick="removeWordFromEx4(${item.id}, ${idx})" class="px-3.5 py-1.5 rounded-xl bg-indigo-600 text-white en-font font-extrabold text-base shadow">${wordObj.text}</button>`).join("")}
+          </div>
+          <div class="flex flex-wrap items-center gap-2.5 py-1" dir="ltr">
+            ${st.available.map((wordObj, idx) => `<button onclick="selectWordForEx4(${item.id}, ${idx})" class="draggable-word px-4 py-2 rounded-xl en-font font-extrabold text-base text-indigo-950">${wordObj.text}</button>`).join("")}
+          </div>
+          <div id="ex4-sync-container-${item.id}" class="hidden mt-4 p-4 bg-indigo-50 border-2 border-indigo-200 rounded-2xl text-center en-font text-xl font-black text-indigo-900" dir="ltr"></div>
+          <div class="mt-3 pt-3 border-t border-slate-100 flex flex-wrap items-center justify-between gap-2 text-xs md:text-sm font-bold text-slate-600">
+            <span><i class="fa-solid fa-language text-indigo-500 ml-1"></i> ${item.arabic}</span>
+            ${st.status === "correct" ? `<span class="text-emerald-700 font-black">✅ إجابة صحيحة</span>` : st.status === "wrong" ? `<span class="text-rose-600 font-black">❌ حاول مجدداً</span>` : ""}
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function formatBuiltSentence(wordsArray) {
+      if (wordsArray.length === 0) return "";
+      return wordsArray.join(" ").replace(/\s+\./g, ".").trim();
+    }
+
+    function selectWordForEx4(sentenceId, availIndex) {
+      const st = ex4State[sentenceId];
+      const [picked] = st.available.splice(availIndex, 1);
+      st.selected.push(picked); st.status = null;
+      playPopSound(); renderEx4Sentences();
+    }
+
+    function removeWordFromEx4(sentenceId, selIndex) {
+      const st = ex4State[sentenceId];
+      const [removed] = st.selected.splice(selIndex, 1);
+      st.available.push(removed); st.status = null;
+      playPopSound(); renderEx4Sentences();
+    }
+
+    let ex4SpeechSessionId = 0;
+    function playEx4Sentence(id) {
+      if (!('speechSynthesis' in window)) return;
+      stopSpeech();
+      ex4SpeechSessionId++;
+      const currentSession = ex4SpeechSessionId;
+      const item = ex4SentencesData.find(x => x.id === id);
+      if (!item) return;
+      const syncContainer = document.getElementById(`ex4-sync-container-${id}`);
+      if (!syncContainer) return;
+      syncContainer.classList.remove("hidden");
+
+      let tokens = []; let charCursor = 0; let html = "";
+      item.correctSentence.split(/\s+/).forEach((word, idx) => {
+        const spanId = `ex4-sync-w-${id}-${idx}`;
+        html += `<span id="${spanId}" class="transition-all duration-150 rounded px-1 inline-block">${word}</span> `;
+        tokens.push({ id: spanId, charStart: charCursor, charEnd: charCursor + word.length });
+        charCursor += word.length + 1;
+      });
+      syncContainer.innerHTML = html;
+
+      const u = new SpeechSynthesisUtterance(item.correctSentence);
+      u.rate = 0.88;
+      const v = getSelectedVoice(); if (v) u.voice = v;
+      u.onboundary = (e) => {
+        if (currentSession !== ex4SpeechSessionId || e.name !== 'word') return;
+        const matched = tokens.find(t => e.charIndex >= t.charStart && e.charIndex <= t.charEnd);
+        if (matched) {
+          document.querySelectorAll(`[id^="ex4-sync-w-${id}-"]`).forEach(el => el.classList.remove("bg-yellow-300", "text-amber-950", "scale-110", "shadow"));
+          const el = document.getElementById(matched.id);
+          if (el) el.classList.add("bg-yellow-300", "text-amber-950", "scale-110", "shadow");
+        }
+      };
+      window.speechSynthesis.speak(u);
+    }
+
+    function checkSingleEx4(sentenceId) {
+      const item = ex4SentencesData.find(s => s.id === sentenceId);
+      const st = ex4State[sentenceId];
+      const userSent = formatBuiltSentence(st.selected.map(x => x.text)).toLowerCase();
+      if (userSent === item.correctSentence.toLowerCase()) {
+        st.status = "correct"; playEx4Sentence(sentenceId); addStars(2); playSuccessFanfare(); triggerConfettiMini();
+      } else {
+        st.status = "wrong"; playChime(260);
+      }
+      renderEx4Sentences();
+    }
+
+    function resetSingleEx4(sentenceId) {
+      const item = ex4SentencesData.find(s => s.id === sentenceId);
+      ex4State[sentenceId] = { available: item.chunks.map((text, idx) => ({ id: `s${item.id}-c${idx}`, text })), selected: [], status: null };
+      playPopSound(); renderEx4Sentences();
+    }
+
+    function solveAllEx4() {
+      ex4SentencesData.forEach(item => {
+        const targetOrder = {
+          1: ["My dad", "often", "makes", "dinner", "."],
+          2: ["We", "sometimes", "have", "celebrations", "at", "school", "."],
+          3: ["Adel", "never", "does", "his", "homework", "in", "the", "park", "."],
+          4: ["I", "always", "have", "art", "class", "on", "Tuesday", "mornings", "."],
+          5: ["My", "best friend", "often", "goes", "to", "the", "school", "club", "on", "Thursdays", "."]
+        }[item.id];
+        ex4State[item.id] = { available: [], selected: targetOrder.map((text, idx) => ({ id: `sol-${idx}`, text })), status: "correct" };
+      });
+      addStars(3); playSuccessFanfare(); triggerConfettiMini(); renderEx4Sentences();
+    }
+
+    function resetAllEx4() {
+      ex4State = {}; initializeEx4Builder(); playPopSound();
+    }
+
+    /* ================= EXERCISE 5 (DRAG & DROP) ================= */
+    let selectedWordForDrop = null;
+    let placedWords = {};
+
+    function initializeWordBank() {
+      const container = document.getElementById("wordsContainer");
+      container.innerHTML = "";
+      wordBankData.forEach(item => {
+        const chip = document.createElement("div");
+        chip.id = item.id; chip.draggable = true;
+        chip.className = "draggable-word flex items-center gap-3 px-5 py-3 rounded-2xl text-indigo-950 font-bold text-lg";
+        chip.innerHTML = `<span>${item.text}</span><span class="text-xs bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded-full" dir="rtl">${item.hint}</span>`;
+        chip.addEventListener("dragstart", (e) => e.dataTransfer.setData("text/plain", item.text));
+        chip.onclick = () => {
+          if (selectedWordForDrop && selectedWordForDrop.text === item.text) { chip.classList.remove("selected-for-drop"); selectedWordForDrop = null; }
+          else { document.querySelectorAll("#wordsContainer .draggable-word").forEach(c => c.classList.remove("selected-for-drop")); chip.classList.add("selected-for-drop"); selectedWordForDrop = { text: item.text }; playPopSound(); }
+        };
+        container.appendChild(chip);
+      });
+
+      document.querySelectorAll(".drop-slot").forEach(slot => {
+        slot.addEventListener("dragover", (e) => { e.preventDefault(); slot.classList.add("drag-over"); });
+        slot.addEventListener("dragleave", () => slot.classList.remove("drag-over"));
+        slot.addEventListener("drop", (e) => { e.preventDefault(); slot.classList.remove("drag-over"); placeWordInSlot(slot.getAttribute("data-slot"), e.dataTransfer.getData("text/plain")); });
+        slot.addEventListener("click", () => {
+          const sId = slot.getAttribute("data-slot");
+          if (selectedWordForDrop) { placeWordInSlot(sId, selectedWordForDrop.text); playPopSound(); }
+          else if (placedWords[sId]) { removeWordFromSlot(sId); }
+        });
+      });
+      updateDragDropProgress();
+    }
+
+    function placeWordInSlot(slotId, wordText) {
+      placedWords[slotId] = wordText;
+      const slot = document.querySelector(`.drop-slot[data-slot="${slotId}"]`);
+      if (slot) {
+        slot.classList.add("filled"); slot.classList.remove("correct", "incorrect");
+        slot.innerHTML = `<span>${wordText}</span><button onclick="event.stopPropagation(); removeWordFromSlot('${slotId}')" class="mr-1 ml-2 w-5 h-5 bg-rose-500 text-white rounded-full inline-flex items-center justify-center text-[10px]"><i class="fa-solid fa-xmark"></i></button>`;
+      }
+      updateDragDropProgress();
+    }
+
+    function removeWordFromSlot(slotId) {
+      delete placedWords[slotId];
+      const slot = document.querySelector(`.drop-slot[data-slot="${slotId}"]`);
+      if (slot) { slot.classList.remove("filled", "correct", "incorrect"); slot.innerHTML = ""; }
+      updateDragDropProgress(); playPopSound();
+    }
+
+    function updateDragDropProgress() {
+      const count = Object.keys(placedWords).length;
+      document.getElementById("ddProgressText").innerText = `${count} / 12`;
+      document.getElementById("ddProgressBar").style.width = `${Math.round((count / 12) * 100)}%`;
+    }
+
+    function checkAnswers() {
+      let correct = 0;
+      document.querySelectorAll(".drop-slot").forEach(slot => {
+        const sId = slot.getAttribute("data-slot");
+        const exp = slot.getAttribute("data-answer").toLowerCase().trim();
+        const cur = (placedWords[sId] || "").toLowerCase().trim();
+        slot.classList.remove("correct", "incorrect");
+        if (cur === exp) { slot.classList.add("correct"); correct++; }
+        else if (cur !== "") slot.classList.add("incorrect");
+      });
+      const res = document.getElementById("exerciseResultBox");
+      res.classList.remove("hidden");
+      if (correct === 12) {
+        res.className = "mt-8 p-8 rounded-3xl text-center bg-emerald-50 border-4 border-emerald-300 text-emerald-950";
+        res.innerHTML = `<h4 class="text-2xl font-black mb-2">🏆 إنجاز مذهل! 12 / 12 صحيح</h4>`;
+        addStars(5); triggerBigConfetti(); playSuccessFanfare();
+      } else {
+        res.className = "mt-8 p-6 rounded-3xl text-center bg-amber-50 border-4 border-amber-300 text-amber-950";
+        res.innerHTML = `<h4 class="text-xl font-black">حصلت على ${correct} من 12. تفقّد الأخطاء وحاول مجدداً!</h4>`;
+        addStars(1); playChime(360);
+      }
+    }
+
+    function resetDragDrop() {
+      placedWords = {};
+      document.querySelectorAll(".drop-slot").forEach(slot => { slot.classList.remove("filled", "correct", "incorrect"); slot.innerHTML = ""; });
+      document.getElementById("exerciseResultBox").classList.add("hidden");
+      updateDragDropProgress(); playPopSound();
+    }
+
+    function solveOneHint() {
+      const target = Array.from(document.querySelectorAll(".drop-slot")).find(s => (placedWords[s.getAttribute("data-slot")] || "").toLowerCase().trim() !== s.getAttribute("data-answer").toLowerCase().trim());
+      if (target) { placeWordInSlot(target.getAttribute("data-slot"), target.getAttribute("data-answer")); playChime(620); }
+    }
+
+    /* ================= EXERCISE 6 (ROLE PLAY & Q&A) ================= */
+    let currentRpIndex = 0;
+    let currentRpQuestion = roleplayData[0];
+    let roleplaySpeechSessionId = 0;
+    let ex6SpeechSessionId = 0;
+
+    function initializeRoleplay() {
+      const listContainer = document.getElementById("roleplayQuestionsList");
+      listContainer.innerHTML = "";
+      roleplayData.forEach((item, idx) => {
+        const isActive = idx === currentRpIndex;
+        const btn = document.createElement("button");
+        btn.className = `w-full p-4 rounded-2xl border-2 transition-all flex items-center justify-between gap-3 font-bold text-left ${isActive ? "bg-gradient-to-r from-indigo-600 to-purple-600 text-white border-indigo-700 shadow-lg scale-[1.01]" : "bg-white hover:bg-indigo-50/70 text-slate-800 border-slate-250"}`;
+        btn.onclick = () => { currentRpIndex = idx; currentRpQuestion = item; playPopSound(); initializeRoleplay(); };
+        btn.innerHTML = `<span class="en-font text-sm font-extrabold flex-1 truncate" dir="ltr">${item.q}</span><span class="w-8 h-8 rounded-full ${isActive ? 'bg-white text-indigo-700' : 'bg-indigo-100 text-indigo-700'} en-display font-bold text-sm flex items-center justify-center shrink-0">${item.id}</span>`;
+        listContainer.appendChild(btn);
+      });
+      renderRoleplayStage();
+    }
+
+    function renderRoleplayStage() {
+      const q = currentRpQuestion;
+      document.getElementById("rpStageNumber").innerText = q.id;
+
+      const qContainer = document.getElementById("rpQuestionDisplay");
+      qContainer.innerHTML = "";
+      q.q.split(/\s+/).forEach((word, idx) => {
+        const spanId = `rp-q-w-${idx}`;
+        qContainer.innerHTML += `<span id="${spanId}" class="transition-all duration-150 rounded px-1 inline-block">${word}</span> `;
+      });
+      document.getElementById("rpQuestionArabic").innerText = q.qAr;
+
+      const aContainer = document.getElementById("rpAnswerDisplay");
+      aContainer.innerHTML = "";
+      q.correctAnswer.split(/\s+/).forEach((word, idx) => {
+        const spanId = `rp-a-w-${idx}`;
+        aContainer.innerHTML += `<span id="${spanId}" class="transition-all duration-150 rounded px-1 inline-block">${word}</span> `;
+      });
+      document.getElementById("rpAnswerArabic").innerText = q.ansAr;
+    }
+
+    function playRoleplayQuestion(onEndCallback = null) {
+      if (!('speechSynthesis' in window)) return;
+      stopSpeech(); roleplaySpeechSessionId++;
+      const currentSession = roleplaySpeechSessionId;
+      const textToSpeak = currentRpQuestion.q;
+      const tokens = []; let cur = 0;
+      textToSpeak.split(/\s+/).forEach((word, idx) => {
+        tokens.push({ id: `rp-q-w-${idx}`, charStart: cur, charEnd: cur + word.length });
+        cur += word.length + 1;
+      });
+
+      const u = new SpeechSynthesisUtterance(textToSpeak);
+      u.rate = 0.88; const v = getSelectedVoice(); if (v) u.voice = v;
+      u.onboundary = (e) => {
+        if (currentSession !== roleplaySpeechSessionId || e.name !== 'word') return;
+        const matched = tokens.find(t => e.charIndex >= t.charStart && e.charIndex <= t.charEnd);
+        if (matched) {
+          document.querySelectorAll('[id^="rp-q-w-"]').forEach(el => el.classList.remove("bg-pink-300", "text-slate-950", "scale-105", "shadow-sm"));
+          const el = document.getElementById(matched.id);
+          if (el) el.classList.add("bg-pink-300", "text-slate-950", "scale-105", "shadow-sm");
+        }
+      };
+      u.onend = () => {
+         if (currentSession === roleplaySpeechSessionId) {
+             document.querySelectorAll('[id^="rp-q-w-"]').forEach(el => el.classList.remove("bg-pink-300", "text-slate-950", "scale-105", "shadow-sm"));
+             if (onEndCallback) onEndCallback();
+         }
+      };
+      window.speechSynthesis.speak(u);
+    }
+
+    function playRoleplayAnswer() {
+      if (!('speechSynthesis' in window)) return;
+      stopSpeech(); roleplaySpeechSessionId++;
+      const currentSession = roleplaySpeechSessionId;
+      const textToSpeak = currentRpQuestion.correctAnswer;
+      const tokens = []; let cur = 0;
+      textToSpeak.split(/\s+/).forEach((word, idx) => {
+        tokens.push({ id: `rp-a-w-${idx}`, charStart: cur, charEnd: cur + word.length });
+        cur += word.length + 1;
+      });
+
+      const u = new SpeechSynthesisUtterance(textToSpeak);
+      u.rate = 0.88; const v = getSelectedVoice(); if (v) u.voice = v;
+      u.onboundary = (e) => {
+        if (currentSession !== roleplaySpeechSessionId || e.name !== 'word') return;
+        const matched = tokens.find(t => e.charIndex >= t.charStart && e.charIndex <= t.charEnd);
+        if (matched) {
+          document.querySelectorAll('[id^="rp-a-w-"]').forEach(el => el.classList.remove("bg-yellow-300", "text-amber-950", "scale-105", "shadow-sm"));
+          const el = document.getElementById(matched.id);
+          if (el) el.classList.add("bg-yellow-300", "text-amber-950", "scale-105", "shadow-sm");
+        }
+      };
+      u.onend = () => {
+          if (currentSession === roleplaySpeechSessionId) {
+              document.querySelectorAll('[id^="rp-a-w-"]').forEach(el => el.classList.remove("bg-yellow-300", "text-amber-950", "scale-105", "shadow-sm"));
+          }
+      };
+      window.speechSynthesis.speak(u);
+    }
+
+    function playCurrentRoleplay() {
+      playRoleplayQuestion(() => {
+          // Play answer strictly after question finishes with a slight delay
+          setTimeout(() => {
+              playRoleplayAnswer();
+          }, 350);
+      });
+    }
+
+    function initializeEx6WritingList() {
+      const container = document.getElementById("ex6WritingList");
+      container.innerHTML = "";
+      roleplayData.forEach(item => {
+        let qHtml = ""; let cur = 0; item.ex6Tokens = [];
+        item.q.split(/\s+/).forEach((word, idx) => {
+          const sId = `ex6-q-${item.id}-w-${idx}`;
+          qHtml += `<span id="${sId}" class="transition-colors duration-150 rounded px-1 inline-block">${word}</span> `;
+          item.ex6Tokens.push({ id: sId, charStart: cur, charEnd: cur + word.length });
+          cur += word.length + 1;
+        });
+
+        const row = document.createElement("div");
+        row.className = "bg-white p-5 rounded-3xl border-2 border-teal-100 shadow-sm space-y-3";
+        row.innerHTML = `
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <div class="flex items-center gap-2.5 w-full md:w-auto flex-1">
+              <span class="w-8 h-8 rounded-full bg-teal-700 text-white en-display font-bold text-sm flex items-center justify-center shrink-0">${item.id}</span>
+              <button onclick="playEx6Question(${item.id})" class="w-8 h-8 rounded-full bg-teal-50 hover:bg-teal-200 text-teal-700 flex items-center justify-center transition shadow-sm shrink-0" title="استمع للسؤال"><i class="fa-solid fa-volume-high text-sm"></i></button>
+              <span class="en-font text-base md:text-lg font-black text-slate-900 leading-snug" dir="ltr">${qHtml}</span>
+            </div>
+            <span class="text-xs font-bold text-slate-500 w-full md:w-auto text-right" dir="rtl">${item.qAr}</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <input id="ex6-input-${item.id}" type="text" placeholder="Write your answer here..." class="w-full px-4 py-2.5 rounded-2xl border-2 border-slate-200 outline-none en-font font-extrabold text-indigo-700 text-base bg-slate-50/70"/>
+            <div id="ex6-ans-${item.id}" class="hidden w-full px-4 py-2.5 rounded-2xl border-2 border-teal-400 bg-teal-50 en-font font-extrabold text-teal-900 text-base" dir="ltr"></div>
+            <button onclick="fillSingleEx6(${item.id})" class="btn-3d btn-3d-indigo px-4 py-2.5 rounded-2xl text-xs font-black shrink-0"><i class="fa-solid fa-wand-magic-sparkles"></i> الحل</button>
+          </div>
+        `;
+        container.appendChild(row);
+      });
+    }
+
+    function playEx6Question(id) {
+      if (!('speechSynthesis' in window)) return;
+      stopSpeech(); ex6SpeechSessionId++;
+      const currentSession = ex6SpeechSessionId;
+      const item = roleplayData.find(x => x.id === id);
+      if (!item) return;
+      
+      const u = new SpeechSynthesisUtterance(item.q);
+      u.rate = 0.88; const v = getSelectedVoice(); if (v) u.voice = v;
+      u.onboundary = (e) => {
+        if (currentSession !== ex6SpeechSessionId || e.name !== 'word') return;
+        const matched = item.ex6Tokens.find(t => e.charIndex >= t.charStart && e.charIndex <= t.charEnd);
+        if (matched) {
+          document.querySelectorAll(`[id^="ex6-q-${id}-w-"]`).forEach(el => el.classList.remove("bg-teal-200", "text-teal-950", "scale-105"));
+          const el = document.getElementById(matched.id);
+          if (el) el.classList.add("bg-teal-200", "text-teal-950", "scale-105");
+        }
+      };
+      u.onend = () => {
+         if (currentSession === ex6SpeechSessionId) {
+             document.querySelectorAll(`[id^="ex6-q-${id}-w-"]`).forEach(el => el.classList.remove("bg-teal-200", "text-teal-950", "scale-105"));
+         }
+      };
+      window.speechSynthesis.speak(u);
+    }
+
+    function fillSingleEx6(id) {
+      const item = roleplayData.find(x => x.id === id);
+      if (!item) return;
+      const inputEl = document.getElementById(`ex6-input-${id}`);
+      const displayEl = document.getElementById(`ex6-ans-${id}`);
+      if (inputEl) inputEl.classList.add("hidden");
+      if (displayEl) {
+        
+        // Setup Sync for Answer Box
+        let tokens = []; let charCursor = 0; let html = "";
+        item.correctAnswer.split(/\s+/).forEach((word, idx) => {
+          const spanId = `ex6-sync-a-${id}-${idx}`;
+          html += `<span id="${spanId}" class="transition-all duration-150 rounded px-1 inline-block">${word}</span> `;
+          tokens.push({ id: spanId, charStart: charCursor, charEnd: charCursor + word.length });
+          charCursor += word.length + 1;
+        });
+        
+        displayEl.classList.remove("hidden");
+        displayEl.innerHTML = html;
+        
+        stopSpeech(); ex6SpeechSessionId++;
+        const currentSession = ex6SpeechSessionId;
+        const u = new SpeechSynthesisUtterance(item.correctAnswer);
+        u.rate = 0.88; const v = getSelectedVoice(); if (v) u.voice = v;
+        
+        u.onboundary = (e) => {
+            if (currentSession !== ex6SpeechSessionId || e.name !== 'word') return;
+            const matched = tokens.find(t => e.charIndex >= t.charStart && e.charIndex <= t.charEnd);
+            if (matched) {
+                document.querySelectorAll(`[id^="ex6-sync-a-${id}-"]`).forEach(el => el.classList.remove("bg-yellow-300", "text-amber-950", "scale-105", "shadow-sm"));
+                const el = document.getElementById(matched.id);
+                if (el) el.classList.add("bg-yellow-300", "text-amber-950", "scale-105", "shadow-sm");
+            }
+        };
+        u.onend = () => {
+             if (currentSession === ex6SpeechSessionId) {
+                 document.querySelectorAll(`[id^="ex6-sync-a-${id}-"]`).forEach(el => el.classList.remove("bg-yellow-300", "text-amber-950", "scale-105", "shadow-sm"));
+             }
+        };
+        
+        window.speechSynthesis.speak(u);
+      }
+      addStars(1);
+    }
+
+    function fillSampleEx6Answers() {
+      roleplayData.forEach(item => {
+        const inputEl = document.getElementById(`ex6-input-${item.id}`);
+        const displayEl = document.getElementById(`ex6-ans-${item.id}`);
+        if (inputEl) inputEl.classList.add("hidden");
+        if (displayEl) { displayEl.classList.remove("hidden"); displayEl.innerText = item.correctAnswer; }
+      });
+      addStars(3); playSuccessFanfare(); triggerConfettiMini();
+    }
+
+    /* ================= SOUND & GAMIFICATION ================= */
+    function addStars(num) {
+      userStars += num;
+      const scoreEl = document.getElementById("starScore");
+      const badgeEl = document.getElementById("starBadge");
+      if (scoreEl) scoreEl.innerText = userStars;
+      if (badgeEl) { badgeEl.classList.add("scale-110"); setTimeout(() => badgeEl.classList.remove("scale-110"), 300); }
+    }
+
+    function playEncouragement() {
+      const phrases = ["Fantastic job! It was the best day of school!", "Brilliant work! You are a superstar!"];
+      speakText(phrases[Math.floor(Math.random() * phrases.length)], 0.94);
+      triggerBigConfetti(); addStars(2);
+    }
+
+    function playChime(freq = 440) {
+      try {
+        const ctx = new (window.AudioContext || window.webkitAudioContext)();
+        const osc = ctx.createOscillator(); const gain = ctx.createGain();
+        osc.frequency.setValueAtTime(freq, ctx.currentTime);
+        gain.gain.setValueAtTime(0.08, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.28);
+        osc.connect(gain); gain.connect(ctx.destination); osc.start(); osc.stop(ctx.currentTime + 0.28);
+      } catch (e) {}
+    }
+
+    function playPopSound() {
+      try {
+        const ctx = new (window.AudioContext || window.webkitAudioContext)();
+        const osc = ctx.createOscillator(); const gain = ctx.createGain();
+        osc.frequency.setValueAtTime(420, ctx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(780, ctx.currentTime + 0.09);
+        gain.gain.setValueAtTime(0.08, ctx.currentTime);
+        gain.gain.linearRampToValueAtTime(0.005, ctx.currentTime + 0.09);
+        osc.connect(gain); gain.connect(ctx.destination); osc.start(); osc.stop(ctx.currentTime + 0.09);
+      } catch (e) {}
+    }
+
+    function playSuccessFanfare() {
+      try {
+        const ctx = new (window.AudioContext || window.webkitAudioContext)();
+        [523.25, 659.25, 783.99, 1046.5].forEach((freq, idx) => {
+          const osc = ctx.createOscillator(); const gain = ctx.createGain();
+          osc.frequency.value = freq;
+          gain.gain.setValueAtTime(0.09, ctx.currentTime + idx * 0.09);
+          gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + idx * 0.09 + 0.35);
+          osc.connect(gain); gain.connect(ctx.destination); osc.start(ctx.currentTime + idx * 0.09); osc.stop(ctx.currentTime + idx * 0.09 + 0.35);
+        });
+      } catch (e) {}
+    }
+
+    function triggerConfettiMini() {
+      if (typeof confetti === "function") confetti({ particleCount: 45, spread: 65, origin: { y: 0.78 } });
+    }
+
+    function triggerBigConfetti() {
+      if (typeof confetti === "function") confetti({ particleCount: 140, spread: 95, origin: { y: 0.6 } });
+    }
+  </script>
+</body>
+</html>
